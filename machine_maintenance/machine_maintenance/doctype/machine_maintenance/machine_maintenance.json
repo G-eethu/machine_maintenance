@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "MM-.######",
  "creation": "2025-10-07 09:49:34.600459",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -12,7 +13,12 @@
   "column_break_uift",
   "technician",
   "status",
-  "cost"
+  "cost",
+  "section_break_pyls",
+  "parts_used",
+  "notes_tab",
+  "notes_html",
+  "notes"
  ],
  "fields": [
   {
@@ -57,15 +63,44 @@
    "fieldname": "cost",
    "fieldtype": "Currency",
    "label": "Cost"
+  },
+  {
+   "fieldname": "notes_tab",
+   "fieldtype": "Tab Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes_html",
+   "fieldtype": "HTML",
+   "label": "Notes HTML"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Table",
+   "hidden": 1,
+   "label": "Notes",
+   "no_copy": 1,
+   "options": "CRM Note"
+  },
+  {
+   "fieldname": "section_break_pyls",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "parts_used",
+   "fieldtype": "Table",
+   "label": "Parts Used",
+   "options": "Parts Used"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-07 09:55:08.096393",
+ "modified": "2025-10-07 11:18:39.381379",
  "modified_by": "Administrator",
  "module": "Machine Maintenance",
  "name": "Machine Maintenance",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

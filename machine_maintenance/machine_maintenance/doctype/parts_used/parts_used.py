@@ -1,10 +1,9 @@
 # Copyright (c) 2025, Geethu and contributors
 # For license information, please see license.txt
 
-import frappe
+# import frappe
 from frappe.model.document import Document
-from erpnext.crm.utils import CRMNote
 
 
-class MachineMaintenance(CRMNote):
+class PartsUsed(Document):
 	pass
