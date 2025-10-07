@@ -13,9 +13,10 @@
   "column_break_uift",
   "technician",
   "status",
-  "cost",
+  "mark_completed",
   "section_break_pyls",
   "parts_used",
+  "cost",
   "notes_tab",
   "notes_html",
   "notes"
@@ -57,14 +58,17 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "\nScheduled\nCompleted\nOverdue"
+   "options": "\nScheduled\nCompleted\nOverdue",
+   "read_only": 1
   },
   {
    "fieldname": "cost",
    "fieldtype": "Currency",
-   "label": "Cost"
+   "label": "Cost",
+   "read_only": 1
   },
   {
+   "depends_on": "eval:!doc.__islocal",
    "fieldname": "notes_tab",
    "fieldtype": "Tab Break",
    "label": "Notes"
@@ -91,12 +95,17 @@
    "fieldtype": "Table",
    "label": "Parts Used",
    "options": "Parts Used"
+  },
+  {
+   "fieldname": "mark_completed",
+   "fieldtype": "Button",
+   "label": "Mark Completed"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-07 11:18:39.381379",
+ "modified": "2025-10-07 12:19:00.084747",
  "modified_by": "Administrator",
  "module": "Machine Maintenance",
  "name": "Machine Maintenance",
