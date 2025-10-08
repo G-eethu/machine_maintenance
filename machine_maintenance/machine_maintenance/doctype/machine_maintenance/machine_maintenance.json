@@ -26,8 +26,10 @@
   {
    "fieldname": "machine_name",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Machine Name",
-   "options": "Item"
+   "options": "Item",
+   "reqd": 1
   },
   {
    "fieldname": "maintenance_date",
@@ -37,8 +39,10 @@
   {
    "fieldname": "maintenance_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Maintenance Type",
-   "options": "\nPreventive\nCorrective"
+   "options": "\nPreventive\nCorrective",
+   "reqd": 1
   },
   {
    "fieldname": "completion_date",
@@ -116,8 +120,13 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2025-10-08 17:25:50.998948",
+ "links": [
+  {
+   "link_doctype": "Journal Entry",
+   "link_fieldname": "custom_machine_maintenance"
+  }
+ ],
+ "modified": "2025-10-08 23:19:27.893071",
  "modified_by": "Administrator",
  "module": "Machine Maintenance",
  "name": "Machine Maintenance",

@@ -37,6 +37,7 @@ class MachineMaintenance(CRMNote):
 
         je = frappe.new_doc("Journal Entry")
         je.voucher_type = "Journal Entry"
+        je.custom_machine_maintenance = self.name
         je.company = company
         je.posting_date = self.maintenance_date
         je.remark = f"Maintenance cost for {self.machine_name} ({self.name})"
