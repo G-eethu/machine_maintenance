@@ -45,7 +45,6 @@ def get_data(filters):
 
     consolidated = filters.get("consolidated")
 
-    # --- Consolidated View ---
     if consolidated:
         query = f"""
             SELECT
@@ -62,7 +61,6 @@ def get_data(filters):
             ORDER BY mm.machine_name
         """
 
-    # --- Detailed View ---
     else:
         query = f"""
             SELECT
