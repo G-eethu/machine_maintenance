@@ -1,39 +1,29 @@
 ### Machine Maintenance
 
-Machine Maintenance
+A simple ERPNext app to manage and track machine maintenance activities.  
+You can record maintenance details, assign technicians, track costs, and get automatic notifications for scheduled, overdue, and completed maintenance.
+
+---
+
+### Features
+
+- Record machine maintenance details with technician and total cost.
+- Journal Entry Creation.
+- Validations to make sure all required details are filled before submission.
+- Machine Maintenance Report with filters.
+- Email notifications sent when:
+  - Maintenance is scheduled
+  - Maintenance becomes overdue
+  - Maintenance is completed
+
+---
 
 ### Installation
 
-You can install this app using the [bench](https://github.com/frappe/bench) CLI:
+1. bench get-app https://github.com/G-eethu/machine_maintenance.git
+2. bench install-app machine_maintenance
 
-```bash
-cd $PATH_TO_YOUR_BENCH
-bench get-app $URL_OF_THIS_REPO --branch develop
-bench install-app machine_maintenance
-```
 
-### Contributing
-
-This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
-
-```bash
-cd apps/machine_maintenance
-pre-commit install
-```
-
-Pre-commit is configured to use the following tools for checking and formatting your code:
-
-- ruff
-- eslint
-- prettier
-- pyupgrade
-
-### CI
-
-This app can use GitHub Actions for CI. The following workflows are configured:
-
-- CI: Installs this app and runs unit tests on every push to `develop` branch.
-- Linters: Runs [Frappe Semgrep Rules](https://github.com/frappe/semgrep-rules) and [pip-audit](https://pypi.org/project/pip-audit/) on every pull request.
 
 
 ### License
