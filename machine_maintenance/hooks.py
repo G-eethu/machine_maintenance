@@ -242,3 +242,7 @@ app_license = "unlicense"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+fixtures = [
+    {"doctype": "Role", "filters": [["role_name", "in", ["Manager", "Technician"]]]},
+    {"doctype": "Workflow", "filters": [["name", "in", ["Machine Maintenance"]]]}
+]
