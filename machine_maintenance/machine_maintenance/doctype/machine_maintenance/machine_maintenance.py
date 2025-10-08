@@ -12,6 +12,10 @@ class MachineMaintenance(CRMNote):
         if not self.technician:
             frappe.throw("Technician must be assigned before submission.")
         self.create_journal_entry()
+        self.send_maintenance_notification()
+
+    def validate(self):
+        self.send_maintenance_notification()
 
 
     def create_journal_entry(self):
@@ -53,3 +57,62 @@ class MachineMaintenance(CRMNote):
         je.submit()
 
         frappe.msgprint(f"Journal Entry <b>{je.name}</b> created for maintenance cost.")
+
+
+    def send_maintenance_notification(self):
+        """Send notifications based on current status"""
+        subject = ""
+        message = ""
+        recipients = []
+        technician_email = None
+        if self.technician:
+            technician_email = frappe.db.get_value("Employee", self.technician, "user_id")
+
+        company_email = frappe.db.get_single_value("Maintenance Settings", "default_notification_email") \
+            if frappe.db.exists("DocType", "Maintenance Settings") else None
+
+        if technician_email:
+            recipients.append(technician_email)
+        elif company_email:
+            recipients.append(company_email)
+
+        if not recipients:
+            frappe.logger().info(f"No email recipients found for Machine Maintenance {self.name}")
+            return
+
+        if self.status == "Completed":
+            subject = f"Maintenance Completed for {self.machine_name}"
+            message = f"""
+                <p>Hello,</p>
+                <p>The maintenance for <b>{self.machine_name}</b> has been marked as <b>Completed</b>.</p>
+                <p>Date: {self.maintenance_date}</p>
+                <p>Technician: {self.technician or 'N/A'}</p>
+                <p>Total Cost: {self.cost or 0}</p>
+            """
+
+        elif self.status == "Scheduled":
+            subject = f"Maintenance Scheduled for {self.machine_name}"
+            message = f"""
+                <p>Hello,</p>
+                <p>The maintenance for <b>{self.machine_name}</b> is <b>Scheduled</b> on {self.maintenance_date}.</p>
+                <p>Assigned Technician: {self.technician or 'N/A'}</p>
+            """
+
+        elif self.status == "Overdue":
+            subject = f"Maintenance Overdue for {self.machine_name}"
+            message = f"""
+                <p>Hello,</p>
+                <p>The maintenance for <b>{self.machine_name}</b> is <b>Overdue</b> since {self.maintenance_date}.</p>
+                <p>Please take immediate action.</p>
+            """
+
+        if subject and message:
+            frappe.sendmail(
+                recipients=recipients,
+                subject=subject,
+                message=message,
+                reference_doctype=self.doctype,
+                reference_name=self.name
+            )
+            frappe.msgprint(f" Email sent for status <b>{self.status}</b>.")
+

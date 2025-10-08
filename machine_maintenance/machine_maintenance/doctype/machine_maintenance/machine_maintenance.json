@@ -56,6 +56,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
@@ -116,7 +117,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-10-08 10:29:04.915827",
+ "modified": "2025-10-08 17:25:50.998948",
  "modified_by": "Administrator",
  "module": "Machine Maintenance",
  "name": "Machine Maintenance",
