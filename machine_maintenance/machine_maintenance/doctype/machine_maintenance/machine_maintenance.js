@@ -19,6 +19,7 @@ frappe.ui.form.on("Machine Maintenance", {
 
     refresh(frm) {
         frm.toggle_display("notes_html", frm.doc.status !== "Scheduled");
+        show_notes(frm);
 
         if (frm.doc.maintenance_date < frappe.datetime.get_today() && frm.doc.status !== "Completed") {
             frm.set_value("status", "Overdue");
